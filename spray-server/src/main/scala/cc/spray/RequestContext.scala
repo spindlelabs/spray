@@ -186,7 +186,7 @@ case class RequestContext(
     error match {
       case HttpException(NotFound, NotFound.defaultMessage) => reject()
       case HttpException(failure, reason) => complete(HttpResponse(failure, reason))
-      case e => complete(HttpResponse(InternalServerError, "Internal Server Error:\n" + e.toString))
+      case e => complete(HttpResponse(InternalServerError, InternalServerError.defaultMessage))
     }
   }
 

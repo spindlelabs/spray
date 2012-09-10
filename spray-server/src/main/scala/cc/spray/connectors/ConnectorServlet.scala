@@ -51,7 +51,7 @@ private[connectors] abstract class ConnectorServlet(containerName: String) exten
       }
     } catch {
       case HttpException(failure, reason) => respond(req, resp, HttpResponse(failure.value, reason)); None
-      case e: Exception => respond(req, resp, HttpResponse(500, "Internal Server Error:\n" + e.toString)); None
+      case e: Exception => respond(req, resp, HttpResponse(InternalServerError, InternalServerError.defaultMessage)); None
     }
   }
 

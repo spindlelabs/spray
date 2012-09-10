@@ -34,7 +34,7 @@ object HttpHeader extends Logging {
       case None => HttpHeaders.CustomHeader(name, value)
       case Some(rule) => HttpParser.parse(rule, value) match {
         case Left(error) =>
-          val msg = "Illegal HTTP header '" + name + "':\n" + error
+          val msg = "Illegal HTTP header '" + name + "'"
           if (SprayBaseSettings.RelaxedHeaderParsing) {
             log.warn(msg)
             HttpHeaders.CustomHeader(name, value)
