@@ -25,6 +25,10 @@ trait ErrorHandling {
 
   protected[spray] def responseForException(request: Any, e: Exception): HttpResponse = {
     e match {
+      case e: java.net.URISyntaxException => {
+        log.warn("Service received bad/malformed request: " + e.getMessage + "\n" + e.getStackTraceString)
+        HttpResponse(BadRequest)
+      }
       case HttpException(failure, reason) =>
         log.warn("Request %s could not be handled normally, completing with %s response (%s)",
           request, failure.value, reason)
@@ -32,7 +36,7 @@ trait ErrorHandling {
       case e: IllegalResponseException => throw e
       case e: Exception =>
         log.warn("Error during processing of request %s: %s", request, e)
-        HttpResponse(InternalServerError, "Internal Server Error:\n" + e.toString)
+        HttpResponse(InternalServerError, InternalServerError.defaultMessage)
     }
   }
 

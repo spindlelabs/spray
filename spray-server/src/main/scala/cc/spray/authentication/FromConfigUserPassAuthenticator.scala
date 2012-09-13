@@ -39,7 +39,7 @@ object FromConfigUserPassAuthenticator extends UserPassAuthenticator[BasicUserCo
       userPass.flatMap {
         case (user, pass) => {
           akka.config.Config.config.getString("spray.users." + user).flatMap { pw =>
-            if (pw == pass) {
+            if (SecureEquals.secureEquals(pw, pass)) {
               Some(BasicUserContext(user))
             } else {
               None
