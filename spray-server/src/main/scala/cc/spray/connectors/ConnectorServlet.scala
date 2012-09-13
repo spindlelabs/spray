@@ -111,7 +111,7 @@ private[connectors] abstract class ConnectorServlet(containerName: String) exten
         servletResponse.getOutputStream.write(content.buffer)
       }
     } catch {
-      case e: IOException => log.error("Could not write response body of %s, probably the request has either timed out" +
+      case e: IOException => log.info("Could not write response body of %s, probably the request has either timed out" +
         "or the client has disconnected (%s)", requestString(req), e)
       case e: Exception => log.error(e, "Could not complete %s", requestString(req))
     }
@@ -123,7 +123,7 @@ private[connectors] abstract class ConnectorServlet(containerName: String) exten
         try {
           f(response)
         } catch {
-          case e: IllegalStateException => log.error("Could not complete %s, it probably timed out and has therefore" +
+          case e: IllegalStateException => log.info("Could not complete %s, it probably timed out and has therefore" +
             "already been completed (%s)", requestString(req), e)
           case e: Exception => log.error("Could not complete %s due to %s", requestString(req), e)
         }
@@ -140,7 +140,7 @@ private[connectors] abstract class ConnectorServlet(containerName: String) exten
       latch.countDown()
     }
     requestContext(req, resp, responder).foreach { context =>
-      log.error("Timeout of %s", context.request)
+      log.warn("Timeout of %s", context.request)
       timeoutActor ! Timeout(context)
       latch.await(timeout, TimeUnit.MILLISECONDS) // give the timeoutActor another `timeout` ms for completing
     }

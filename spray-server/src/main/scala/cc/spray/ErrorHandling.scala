@@ -31,7 +31,7 @@ trait ErrorHandling {
         HttpResponse(failure, reason)
       case e: IllegalResponseException => throw e
       case e: Exception =>
-        log.error(e, "Error during processing of request %s", request)
+        log.warn("Error during processing of request %s: %s", request, e)
         HttpResponse(InternalServerError, "Internal Server Error:\n" + e.toString)
     }
   }
