@@ -13,10 +13,10 @@ object Dependencies {
     val akka      = "1.3.1"
     val jetty     = "8.1.0.v20120127"
     val sprayCan  = "0.9.3"
-    val sprayJson = "1.1.0"
-    val slf4j     = "1.6.4"
-    val logback   = "1.0.0"
-    val liftJson  = "2.4"
+    val sprayJson = "1.1.1"
+    val slf4j     = "1.7.5"
+    val logback   = "1.0.13"
+    val liftJson  = "2.5-RC5"
   }
 
   object Compile {
@@ -39,11 +39,11 @@ object Dependencies {
     val slf4j         = "org.slf4j"                 %   "slf4j-api"                 % V.slf4j           % "provided"
     val liftJson      = "net.liftweb"               %%  "lift-json"                 % V.liftJson        % "provided"
     val scalate       = "org.fusesource.scalate"    %   "scalate-core"              % "1.5.3"           % "provided"
-    val twirlApi      = "cc.spray"                  %%  "twirl-api"                 % "0.5.1"           % "provided"
+    val twirlApi      = "cc.spray"                  %%  "twirl-api"                 % "0.5.2"           % "provided"
   }
 
   object Test {
-    val specs2        = "org.specs2"                %%  "specs2"                    % "1.7.1"   % "test"
+    val specs2        = "org.specs2"                %%  "specs2"                    % "1.9"   % "test"
     val slf4j         = "org.slf4j"                 %   "slf4j-api"                 % V.slf4j   % "test"
     val akkaSlf4j     = "se.scalablesolutions.akka" %   "akka-slf4j"                % V.akka    % "test"
     val logback       = "ch.qos.logback"            %   "logback-classic"           % V.logback % "test"

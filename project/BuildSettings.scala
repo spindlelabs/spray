@@ -13,7 +13,7 @@ object BuildSettings {
     description   := "A suite of lightweight Scala libraries for building and consuming RESTful web services on top of Akka",
     startYear     := Some(2011),
     licenses      := Seq("Apache 2" -> new URL("http://www.apache.org/licenses/LICENSE-2.0.txt")),
-    scalaVersion  := "2.9.1",
+    scalaVersion  := "2.9.2",
     resolvers     ++= Dependencies.resolutionRepos,
     scalacOptions := Seq("-deprecation", "-encoding", "utf8")
   )
